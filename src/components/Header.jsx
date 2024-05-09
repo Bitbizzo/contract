@@ -1,22 +1,28 @@
 // Particle Auth Core
-import { useConnect } from '@particle-network/auth-core-modal';
+import { useConnect, useEthereum } from '@particle-network/auth-core-modal';
+ import { useAuthCore } from '@particle-network/auth-core-modal';
+
 
 
 
 const Header = () => {
- const { connect, connected } = useConnect();
 
- // Event handler for button click
- const handleConnect = async () => {
-   try {
-     // Call the connect function and get user information
-     const userInfo = await connect();
-     console.log('User info:', userInfo);
-   } catch (error) {
-     console.error('Error connecting:', error);
-   }
- };
-  
+
+
+  const { connect, connected } = useConnect();
+
+  const handleLogin = async () => {
+    console.log(connected);
+    try {
+      if (!connected) {
+        const userInfo = await connect();
+        console.log('User info:', userInfo);
+        console.log(connected);
+      }
+    } catch (error) {
+      console.error('Error connecting:', error);
+    }
+  };
 
   return (
     <header className='flex justify-between px-4 py-6 bg-black items-center container mx-auto'>
@@ -31,7 +37,9 @@ const Header = () => {
         <button className='bg-white capaitalize p-2 rounded text-xs lg:text-sm'>
           connect wallet
         </button>
-        <button className='bg-white capaitalize p-2 rounded mx-4 w-20 text-xs lg:text-sm' onClick={handleConnect}>
+        <button
+          className='bg-white capaitalize p-2 rounded mx-4 w-20 text-xs lg:text-sm'
+          onClick={handleLogin}>
           login
         </button>
         <button className='bg-[#5C006A] capaitalize p-2 rounded w-20 text-white text-xs lg:text-sm'>
@@ -40,6 +48,6 @@ const Header = () => {
       </div>
     </header>
   );
-};
+}
 
 export default Header;

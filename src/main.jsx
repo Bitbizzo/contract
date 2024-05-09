@@ -9,38 +9,40 @@ import {
   AuthCoreContextProvider,
   PromptSettingType,
 } from '@particle-network/auth-core-modal';
-import { appID, clientKey, projectID } from './utils/api.js';
+import { appID, clientKey, projectID, serverKey } from './utils/api.js';
 
 import('buffer').then(({ Buffer }) => {
   window.Buffer = Buffer;
 });
 
+console.log(appID);
+const options = {
+  projectId: projectID,
+  clientKey: clientKey,
+  serverKey: serverKey,
+  appId: appID,
+  authTypes: [AuthType.email, AuthType.google, AuthType.twitter],
+  themeType: 'dark',
+  fiatCoin: 'USD',
+  language: 'en',
+  erc4337: {
+    name: 'SIMPLE',
+    version: '1.0.0',
+  },
+  promptSettingConfig: {
+    promptPaymentPasswordSettingWhenSign: PromptSettingType.first,
+    promptMasterPasswordSettingWhenLogin: PromptSettingType.first,
+  },
+  wallet: {
+    visible: true,
+    // customStyle: {
+    //   supportChains: [EthereumGoerli],
+    // },
+  },
+};
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthCoreContextProvider
-      options={{
-        projectId: projectID,
-        clientKey: clientKey,
-        appId: appID,
-        authTypes: [AuthType.email, AuthType.google, AuthType.twitter],
-        themeType: 'dark',
-        fiatCoin: 'USD',
-        language: 'en',
-        erc4337: {
-          name: 'SIMPLE',
-          version: '1.0.0',
-        },
-        promptSettingConfig: {
-          promptPaymentPasswordSettingWhenSign: PromptSettingType.first,
-          promptMasterPasswordSettingWhenLogin: PromptSettingType.first,
-        },
-        wallet: {
-          visible: true,
-          // customStyle: {
-          //   supportChains: [EthereumGoerli],
-          // },
-        },
-      }}>
+    <AuthCoreContextProvider options={options}>
       <App />
     </AuthCoreContextProvider>
   </React.StrictMode>
