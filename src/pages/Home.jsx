@@ -17,7 +17,7 @@ const Home = () => {
     queryKey: ['popularMovies'],
     queryFn: fetchPopularMovies,
   });
-  // console.log(data);
+ 
 
   let randomMovie;
   if (data && data.results && data.results.length > 0) {
@@ -28,7 +28,8 @@ const Home = () => {
   // console.log('Randomly selected movie:', randomMovie);
   return (
     <section className='container mx-auto'>
-      <div className=' w-full h-[520px] bg-blue-500 relative'>
+      <div className=' w-full h-[520px] relative'>
+        {isLoading && 'loading'}
         {randomMovie && (
           <div
             style={{

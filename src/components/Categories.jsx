@@ -24,7 +24,7 @@ const Categories = () => {
   });
  
   return (
-    <section>
+    <section className='text-black'>
       {isLoading && 'loading categories'}
       <div className='flex overflow-x-scroll'>
         <a className='bg-white p-2 m-2 text-xs text-center rounded-md cursor-pointer'>

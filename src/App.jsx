@@ -9,6 +9,7 @@ import LiquidityPools from './pages/LiquidityPools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Upload from './pages/Upload';
 
+
 const queryClient = new QueryClient({});
 const router = createBrowserRouter([
   {

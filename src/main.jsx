@@ -10,12 +10,13 @@ import {
   PromptSettingType,
 } from '@particle-network/auth-core-modal';
 import { appID, clientKey, projectID, serverKey } from './utils/api.js';
+import { ToastContainer } from 'react-toastify';
+import { store } from './store.js';
+import { Provider } from 'react-redux';
 
 import('buffer').then(({ Buffer }) => {
   window.Buffer = Buffer;
 });
-
-console.log(appID);
 const options = {
   projectId: projectID,
   clientKey: clientKey,
@@ -42,8 +43,11 @@ const options = {
 };
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthCoreContextProvider options={options}>
-      <App />
-    </AuthCoreContextProvider>
+    <Provider store={store}>
+      <AuthCoreContextProvider options={options}>
+        <App />
+        <ToastContainer />
+      </AuthCoreContextProvider>
+    </Provider>
   </React.StrictMode>
 );
