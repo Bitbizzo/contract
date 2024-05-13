@@ -51,7 +51,7 @@ const Header = () => {
           </button>
         ) : (
           <button
-            className='bg-white capaitalize p-2 rounded mx-4 w-20 text-xs lg:text-sm'
+            className='bg-white capaitalize p-2 rounded mx-4 w-20 text-xs lg:text-sm text-black'
             onClick={handleLogin}>
             login
           </button>
